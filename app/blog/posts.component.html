@@ -1,10 +1,29 @@
 <ActionBar title="Super Awesome Blog" class="action-bar">
+    <!--<NavigationButton text="Go Back" android.systemIcon="ic_menu_back" tap="onNavBtnTap"></NavigationButton>-->
+    <ActionItem text="Search" class="search-icon" (tap)="search()" android.systemIcon="ic_menu_search"></ActionItem>
 </ActionBar>
+
 <StackLayout class="page">
+    <lv:RadListView [items]="posts" class="list-group" xmlns:lv="nativescript-telerik-ui/listview">
+        <ng-template let-item="item">
+            <StackLayout class="list-group-item" orientation="vertical">
+                <Label fontSize="20" [text]=" item.title " class="list-group-item"></Label>
+            </StackLayout>
+        </ng-template>
+
+
+    </lv:RadListView>
+</StackLayout>
+
+
+
+<!--<StackLayout class="page">
     <ListView [items]="posts" class="list-group">
         <ng-template let-item="item">
-            <Label [text]="item.title"
-                class="list-group-item"></Label>
+            <GridLayout class="list-group-item" rows="*" columns="auto, *, auto">
+                <Label row="0" col="0" [text]="item.title" class="list-group-item"></Label>
+                <Image row="0" col="2" src="http://www.fillmurray.com/300/300" class="thumb"></Image>
+            </GridLayout>
         </ng-template>
     </ListView>
-</StackLayout>
+</StackLayout>-->

@@ -1,0 +1,14 @@
+ActionBar {
+    background-color: #3C5AFD;
+    color: white;
+    vertical-align: center;
+    text-align: center;
+}
+
+.list-group-item {
+    color: green;
+}
+
+.search-icon {
+    color: black;
+}

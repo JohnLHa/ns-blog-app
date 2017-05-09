@@ -3,7 +3,7 @@ import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { NativeScriptHttpModule } from "nativescript-angular/http"
 import { AppRoutingModule } from "./app.routing";
 import { AppComponent } from "./app.component";
-
+import { NativeScriptUIListViewModule } from "nativescript-telerik-ui/listview/angular";
 import { PostsComponent } from "./blog/posts.component"
 import { BlogService } from "./blog/blog.service"
 
@@ -14,7 +14,8 @@ import { BlogService } from "./blog/blog.service"
     imports: [
         NativeScriptModule,
         NativeScriptHttpModule,
-        AppRoutingModule
+        AppRoutingModule,
+        NativeScriptUIListViewModule
     ],
     declarations: [
         AppComponent,
