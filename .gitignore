@@ -1,8 +1,5 @@
 **/Config.js
 **/Config.js.map
-**/app.module.js
-**/app.routing.js
-**/posts.component.js
 
 bin/dist
 node_modules
