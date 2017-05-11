@@ -7,6 +7,7 @@ import { BlogService } from "./blog.service"
     selector: "blog-posts",
     moduleId: module.id,
     templateUrl: "./posts.component.html",
+    styleUrls: ["./post_comp.css"],
     providers: [BlogService]
 })
 export class PostsComponent implements OnInit {
@@ -18,5 +19,8 @@ export class PostsComponent implements OnInit {
         this.data.posts().subscribe(posts=>{
             posts.forEach(post=>this.posts.push(post))
         });
+    }
+    public onItemSelected() {
+        console.log("Item selected.");
     }
 }
