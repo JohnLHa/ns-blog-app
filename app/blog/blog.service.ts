@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core"
 import { Http, Headers, Response } from "@angular/http"
 import { Observable } from "rxjs/Rx";
 import { Config } from "../Config"
-//import { Item } from "./item"
+
 import { Post } from "./post"
 
 import "rxjs/add/operator/map";

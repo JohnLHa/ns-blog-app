@@ -12,3 +12,25 @@ ActionBar {
 .search-icon {
     color: black;
 }
+
+.title {
+    color: black;
+    margin-left: 10;
+    margin-top: 10;
+    opacity: .5;
+}
+
+.slug {
+    color: black;
+    margin-top: 11;
+    margin-bottom: 10;
+    margin-left: 10;
+    margin-right: 90;
+}
+
+Image {
+    margin-top: 8;
+    margin-bottom: 8;
+    margin-left: 8;
+    margin-right: 8;
+}

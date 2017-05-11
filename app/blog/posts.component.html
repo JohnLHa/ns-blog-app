@@ -3,7 +3,7 @@
     <ActionItem text="Search" class="search-icon" (tap)="search()" android.systemIcon="ic_menu_search"></ActionItem>
 </ActionBar>
 
-<StackLayout class="page">
+<!--<StackLayout class="page">
     <lv:RadListView [items]="posts" class="list-group" xmlns:lv="nativescript-telerik-ui/listview">
         <ng-template let-item="item">
             <StackLayout class="list-group-item" orientation="vertical">
@@ -13,11 +13,48 @@
 
 
     </lv:RadListView>
-</StackLayout>
+</StackLayout>-->
+
+<GridLayout tkExampleTitle tkToggleNavButton>
+    <RadListView [items]="posts">
+        <ng-template tkListItemTemplate let-item="item">
+            <GridLayout class="listItemTemplateGrid" height="100" row="*" column="auto,*,auto">
+                <!--<Image row="0" col="2" src="http://www.fillmurray.com/300/300"></Image>-->
+                <StackLayout row="0" col="0" class="labelsStackLayout" orientation="vertical" [nsRouterLink]="['/post', item.slug]">
+                    <Label [text]="item.title" textWrap="true" class="title"></Label>
+                    <Label [text]="item.slug" class="slug" verticalAlignment="bottom" textWrap="true"></Label>
+                </StackLayout>
+
+                <Image row="0" col="1" src="http://www.fillmurray.com/300/300" class="thumb" horizontalAlignment="right"></Image>
+                <StackLayout height="2" backgroundColor="Gray" verticalAlignment="bottom" opacity=".5"></StackLayout>
+            </GridLayout>
+        </ng-template>
+
+        <!-- >> angular-listview-item-layouts-grid -->
+        <ListViewGridLayout tkListViewLayout scrollDirection="Vertical" itemHeight="200" spanCount="1"></ListViewGridLayout>
+        <!-- << angular-listview-item-layouts-grid -->
+    </RadListView>
+</GridLayout>
 
 
 
-<!--<StackLayout class="page">
+<!--Simple list with separators styled format
+    
+    <GridLayout tkExampleTitle tkToggleNavButton>
+    <RadListView [items]="posts">
+        <ng-template tkListItemTemplate let-item="item">
+            <StackLayout orientation="vertical">
+                <Label class="nameLabel" [text]="item.title"></Label>
+                <Label class="descriptionLabel" [text]="item.slug"></Label>
+                <StackLayout height="2" backgroundColor="Black"></StackLayout>
+            </StackLayout>
+        </ng-template>
+    </RadListView>
+</GridLayout>-->
+
+<!--Original styled design before rad list
+    
+    <StackLayout class="page">
     <ListView [items]="posts" class="list-group">
         <ng-template let-item="item">
             <GridLayout class="list-group-item" rows="*" columns="auto, *, auto">
