@@ -63,4 +63,3 @@
     "build-ios-bundle": "npm run ns-bundle --ios --build-app"
   }
 }
-
