@@ -3,9 +3,10 @@ import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { NativeScriptHttpModule } from "nativescript-angular/http"
 import { AppRoutingModule } from "./app.routing";
 import { AppComponent } from "./app.component";
-
+import { LISTVIEW_DIRECTIVES } from 'nativescript-telerik-ui/listview/angular';
 import { PostsComponent } from "./blog/posts.component"
 import { BlogService } from "./blog/blog.service"
+import { PostDetailComponent } from "./blog/post-detail.component"
 
 @NgModule({
     bootstrap: [
@@ -17,8 +18,10 @@ import { BlogService } from "./blog/blog.service"
         AppRoutingModule
     ],
     declarations: [
+        LISTVIEW_DIRECTIVES,
         AppComponent,
-        PostsComponent
+        PostsComponent,
+        PostDetailComponent
     ],
     providers: [
         BlogService
