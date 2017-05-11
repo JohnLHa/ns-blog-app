@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import {Observable} from 'rxjs/Observable';
 
+import { Page } from "ui/page";
 import { Post } from "./post";
 import { BlogService } from "./blog.service";
 
@@ -18,8 +19,10 @@ export class PostDetailComponent implements OnInit {
 
     constructor(
         private blogService: BlogService,
-        private route: ActivatedRoute
-    ){ }
+        private route: ActivatedRoute,
+        page: Page
+    )
+    {page.actionBarHidden = true;}
 
     ngOnInit(): void {
         const title = +this.route.snapshot.params["title"];

@@ -2,10 +2,9 @@ import { Injectable } from "@angular/core"
 import { Http, Headers, Response } from "@angular/http"
 import { Observable } from "rxjs/Rx";
 import { Config } from "../Config"
-
+import 'rxjs/add/operator/filter';
 import { Post } from "./post"
 
-import "rxjs/add/operator/map";
 
 @Injectable()
 export class BlogService {
@@ -32,5 +31,15 @@ export class BlogService {
     handleErrors(error, caught) {
         console.log(JSON.stringify(error));
         return Observable.throw(error);
+    }
+
+    getPostBySlug(slug: string) {
+        let headers = new Headers();
+        headers.append("Ocp-Apim-Subscription-Key", Config.apiKey);
+
+        var result =  this.http.get(Config.postUrl + slug, { headers: headers})
+            .map(res=>res.json()).catch(this.handleErrors);
+
+            return result;
     }
 }

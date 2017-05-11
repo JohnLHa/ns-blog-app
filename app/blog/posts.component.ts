@@ -20,7 +20,5 @@ export class PostsComponent implements OnInit {
             posts.forEach(post=>this.posts.push(post))
         });
     }
-    public onItemSelected() {
-        console.log("Item selected.");
-    }
+
 }

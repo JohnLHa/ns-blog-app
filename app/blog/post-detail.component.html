@@ -1,5 +1,19 @@
-<ActionBar title="Blog Post" class="action-bar">
-
+<StackLayout [items]="posts">
     <NavigationButton text="Go Back" android.systemIcon="ic_menu_back" tap="onNavBtnTap"></NavigationButton>
     <ActionItem text="Share" (tap)="share()" android.systemIcon="ic_menu_share_holo_dark" ios.systemIcon="9" ios.position="right"></ActionItem>
-</ActionBar>
+    <Image src="http://www.fillmurray.com/300/300" stretch="aspectFill" padding="300"></Image>
+
+    <StackLayout orientation="horizontal">
+        <Button text="Category"></Button>
+        <Label text="11 May, 2017" class="date" float="right"></Label>
+    </StackLayout>
+
+    <Label text="title" textWrap="true" class="title"></Label>
+    <Label text="slug" class="slug" textWrap="true"></Label>
+    <Label text="body" class="body" textWrap="true"></Label>
+
+</StackLayout>
+<StackLayout>
+    <NavigationButton text="Go Back" android.systemIcon="ic_menu_back" tap="onNavBtnTap"></NavigationButton>
+    <ActionItem text="Share" (tap)="share()" android.systemIcon="ic_menu_share_holo_dark" ios.systemIcon="9" ios.position="right"></ActionItem>
+</StackLayout>

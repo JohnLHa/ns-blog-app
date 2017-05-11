@@ -4,3 +4,23 @@ ActionBar {
     vertical-align: center;
     text-align: center;
 }
+
+ActionItem,
+NavigationButton {
+    color: blue;
+    background-color: blue;
+}
+
+Image {
+    height: 200;
+    vertical-align: top;
+}
+
+Button {
+    float: left;
+    width: 100;
+}
+
+.date {
+    float: right;
+}
