@@ -8,6 +8,10 @@ import { Post } from "./post"
 
 @Injectable()
 export class BlogService {
+    title = "";
+    body = "";
+    slug = "";
+    post = new Post(this.title, this.body, this.slug);
     constructor(private http: Http) {}
 
     posts() {
@@ -33,13 +37,32 @@ export class BlogService {
         return Observable.throw(error);
     }
 
+    //attempt to return a Post object rather than and Observable wrapping a Post
     getPostBySlug(slug: string) {
         let headers = new Headers();
         headers.append("Ocp-Apim-Subscription-Key", Config.apiKey);
 
         var result =  this.http.get(Config.postUrl + slug, { headers: headers})
-            .map(res=>res.json()).catch(this.handleErrors);
+            .map((res: Response) => {
+                this.post.title = res.json().title;
+                this.post.body = res.json().body;
+                this.post.slug = res.json().slug;
+            } ).catch(this.handleErrors);
+            
+            return this.post;
+    }
 
+    //attempt to follow the format given
+    getPostBySlug(slug: string) {
+        let headers = new Headers();
+        headers.append("Ocp-Apim-Subscription-Key", Config.apiKey);
+
+        var result =  this.http.get(Config.postUrl + slug, { headers: headers})
+            .map(res => res.json()
+            .map(data=> {
+                post => new Post();//would need initializers though
+                //not exactly sure on the syntax
+            })
             return result;
     }
 }

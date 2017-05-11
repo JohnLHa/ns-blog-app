@@ -14,7 +14,7 @@ import { BlogService } from "./blog.service";
 })
 
 export class PostDetailComponent implements OnInit {
-    post: Post;
+    posts: Post;
     data: Observable<Array<Post>>;
 
     constructor(
@@ -25,7 +25,8 @@ export class PostDetailComponent implements OnInit {
     {page.actionBarHidden = true;}
 
     ngOnInit(): void {
-        const title = +this.route.snapshot.params["title"];
+        const slug: string = this.route.snapshot.params["slug"];
         this.data = this.blogService.posts();
+        this.posts = this.blogService.getPostBySlug(slug);
     }
 }
