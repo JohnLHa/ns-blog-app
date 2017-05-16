@@ -1,19 +1,22 @@
-<StackLayout [items]="posts">
+<ActionBar title="" class="action-bar">
     <NavigationButton text="Go Back" android.systemIcon="ic_menu_back" tap="onNavBtnTap"></NavigationButton>
-    <ActionItem text="Share" (tap)="share()" android.systemIcon="ic_menu_share_holo_dark" ios.systemIcon="9" ios.position="right"></ActionItem>
-    <Image src="http://www.fillmurray.com/300/300" stretch="aspectFill" padding="300"></Image>
+    <ActionItem text="Bookmark" (tap)="bookmark()" android.systemIcon="ic_menu_set_as" ios.systemIcon="11" ios.position="right" float="right"></ActionItem>
+    <ActionItem text="Share" (tap)="share()" android.systemIcon="ic_menu_share_holo_dark" ios.systemIcon="9" ios.position="right" float="right"></ActionItem>
+</ActionBar>
 
-    <StackLayout orientation="horizontal">
-        <Button text="Category"></Button>
-        <Label text="11 May, 2017" class="date" float="right"></Label>
+<ScrollView>
+    <StackLayout>
+        <Image src="http://www.fillmurray.com/300/300" stretch="aspectFill"></Image>
+        <StackLayout>
+            <GridLayout columns="auto,*,auto" rows="auto" padding="10">
+                <Button text="Category" col="0" row="0"></Button>
+                <Label text="11 May" class="date" col="2" row="0" paddingTop="10"></Label>
+            </GridLayout>
+            <StackLayout paddingLeft="14">
+                <Label [text]='title' class="h1" textWrap="true" paddingBottom="10"></Label>
+                <!--<Label [text]='slug' class="h4" textWrap="true"></Label>-->
+                <Label [text]='body' class="body" textWrap="true"></Label>
+            </StackLayout>
+        </StackLayout>
     </StackLayout>
-
-    <Label [text]="item.title" textWrap="true" class="title"></Label>
-    <Label [text]="item.slug" class="slug" textWrap="true"></Label>
-    <Label [text]="item.body" class="body" textWrap="true"></Label>
-
-</StackLayout>
-<StackLayout>
-    <NavigationButton text="Go Back" android.systemIcon="ic_menu_back" tap="onNavBtnTap"></NavigationButton>
-    <ActionItem text="Share" (tap)="share()" android.systemIcon="ic_menu_share_holo_dark" ios.systemIcon="9" ios.position="right"></ActionItem>
-</StackLayout>
+</ScrollView>

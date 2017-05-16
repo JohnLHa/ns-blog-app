@@ -1,5 +1,5 @@
 ActionBar {
-    background-color: #3C5AFD;
+    background-color: black;
     color: white;
     vertical-align: center;
     text-align: center;
@@ -7,8 +7,8 @@ ActionBar {
 
 ActionItem,
 NavigationButton {
-    color: blue;
-    background-color: blue;
+    color: white;
+    background-color: white;
 }
 
 Image {
@@ -19,8 +19,22 @@ Image {
 Button {
     float: left;
     width: 100;
+    height: 40;
+    color: white;
+    background-color: #196EFF;
 }
 
 .date {
     float: right;
+    text-align: center;
+}
+
+.h1 {
+    font-family: "Times New Roman", Times, serif;
+    font-weight: bold;
+    color: black;
+}
+
+.body {
+    color: black;
 }

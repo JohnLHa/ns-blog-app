@@ -1,66 +1,29 @@
-<ActionBar title="Super Awesome Blog" class="action-bar">
-    <ActionItem text="Navigation Drawer" class="navdrawer" android.systemIcon="ic_menu_moreoverflow"></ActionItem>
-    <ActionItem text="Search" class="search-icon" (tap)="search()" android.systemIcon="ic_menu_search"></ActionItem>
+<ActionBar title="Feed" class="action-bar">
+    <NavigationButton text="Navigation Drawer" class="navdrawer" android.systemIcon="ic_menu_moreoverflow"></NavigationButton>
+    <!--Add RadSideDrawer
+        <ActionItem text="Navigation Drawer" class="navdrawer" ios.position="left"></ActionItem>-->
+    <ActionItem text="Search" class="search-icon" (tap)="search()" android.systemIcon="ic_menu_search" ios.systemIcon="12" ios.position="right"></ActionItem>
 </ActionBar>
 
-<!--<StackLayout class="page">
-    <lv:RadListView [items]="posts" class="list-group" xmlns:lv="nativescript-telerik-ui/listview">
-        <ng-template let-item="item">
-            <StackLayout class="list-group-item" orientation="vertical">
-                <Label fontSize="20" [text]=" item.title " class="list-group-item"></Label>
-            </StackLayout>
-        </ng-template>
-
-
-    </lv:RadListView>
-</StackLayout>-->
-
-<GridLayout tkExampleTitle tkToggleNavButton>
-    <RadListView [items]="posts">
-        <ng-template tkListItemTemplate let-item="item">
-            <GridLayout class="listItemTemplateGrid" height="100" row="*" column="auto,*,auto">
-                <!--<Image row="0" col="2" src="http://www.fillmurray.com/300/300"></Image>-->
-                <StackLayout row="0" col="0" class="labelsStackLayout" orientation="vertical" [nsRouterLink]="['/post', item.slug]">
-                    <Label [text]="item.title" textWrap="true" class="title"></Label>
-                    <Label [text]="item.slug" class="slug" verticalAlignment="bottom" textWrap="true"></Label>
-                </StackLayout>
-
-                <Image row="0" col="1" src="http://www.fillmurray.com/300/300" class="thumb" horizontalAlignment="right"></Image>
-                <StackLayout height="2" backgroundColor="Gray" verticalAlignment="bottom" opacity=".5"></StackLayout>
-            </GridLayout>
-        </ng-template>
-
-        <!-- >> angular-listview-item-layouts-grid -->
-        <ListViewGridLayout tkListViewLayout scrollDirection="Vertical" itemHeight="200" spanCount="1"></ListViewGridLayout>
-        <!-- << angular-listview-item-layouts-grid -->
-    </RadListView>
-</GridLayout>
-
-
-
-<!--Simple list with separators styled format
-    
+<ScrollView>
     <GridLayout tkExampleTitle tkToggleNavButton>
-    <RadListView [items]="posts">
-        <ng-template tkListItemTemplate let-item="item">
-            <StackLayout orientation="vertical">
-                <Label class="nameLabel" [text]="item.title"></Label>
-                <Label class="descriptionLabel" [text]="item.slug"></Label>
-                <StackLayout height="2" backgroundColor="Black"></StackLayout>
-            </StackLayout>
-        </ng-template>
-    </RadListView>
-</GridLayout>-->
+        <RadListView [items]="posts">
+            <ng-template tkListItemTemplate let-item="item">
+                <GridLayout class="listItemTemplateGrid" height="100" row="*" column="auto,*,auto">
+                    <!--<Image row="0" col="2" src="http://www.fillmurray.com/300/300"></Image>-->
+                    <StackLayout row="0" col="0" class="labelsStackLayout" orientation="vertical" [nsRouterLink]="['/post', item.slug]">
+                        <Label [text]="item.title" textWrap="true" class="title"></Label>
+                        <Label [text]="item.slug" class="slug" verticalAlignment="bottom" textWrap="true"></Label>
+                    </StackLayout>
 
-<!--Original styled design before rad list
-    
-    <StackLayout class="page">
-    <ListView [items]="posts" class="list-group">
-        <ng-template let-item="item">
-            <GridLayout class="list-group-item" rows="*" columns="auto, *, auto">
-                <Label row="0" col="0" [text]="item.title" class="list-group-item"></Label>
-                <Image row="0" col="2" src="http://www.fillmurray.com/300/300" class="thumb"></Image>
-            </GridLayout>
-        </ng-template>
-    </ListView>
-</StackLayout>-->
+                    <Image row="0" col="1" src="http://www.fillmurray.com/300/300" class="thumb" horizontalAlignment="right"></Image>
+                    <StackLayout height="2" backgroundColor="Gray" verticalAlignment="bottom" opacity=".5"></StackLayout>
+                </GridLayout>
+            </ng-template>
+
+            <!-- >> angular-listview-item-layouts-grid -->
+            <ListViewGridLayout tkListViewLayout scrollDirection="Vertical" itemHeight="200" spanCount="1"></ListViewGridLayout>
+            <!-- << angular-listview-item-layouts-grid -->
+        </RadListView>
+    </GridLayout>
+</ScrollView>

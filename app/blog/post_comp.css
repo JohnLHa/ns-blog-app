@@ -1,5 +1,5 @@
 ActionBar {
-    background-color: #3C5AFD;
+    background-color: black;
     color: white;
     vertical-align: center;
     text-align: center;
@@ -33,8 +33,4 @@ Image {
     margin-bottom: 8;
     margin-left: 8;
     margin-right: 8;
-}
-
-.navdrawer {
-    float: left;
 }

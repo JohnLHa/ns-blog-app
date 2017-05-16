@@ -37,32 +37,20 @@ export class BlogService {
         return Observable.throw(error);
     }
 
-    //attempt to return a Post object rather than and Observable wrapping a Post
     getPostBySlug(slug: string) {
-        let headers = new Headers();
-        headers.append("Ocp-Apim-Subscription-Key", Config.apiKey);
-
-        var result =  this.http.get(Config.postUrl + slug, { headers: headers})
-            .map((res: Response) => {
-                this.post.title = res.json().title;
-                this.post.body = res.json().body;
-                this.post.slug = res.json().slug;
-            } ).catch(this.handleErrors);
+	    let headers = new Headers();
+	    headers.append("Ocp-Apim-Subscription-Key", Config.apiKey);;
+        console.log(Config.postUrl + slug);
+	    return this.http.get(Config.postUrl + slug, { headers: headers})
+	        .map(res => res.json());
             
-            return this.post;
-    }
+            // .do(x => console.log(x))
+	        // .map(data=> {
+            //     let post = new Post(data.title, data.body, data.slug);
+            //     post.tags = data.tags;
+            //     return post;
+	        // })   .catch(this.handleErrors)
 
-    //attempt to follow the format given
-    getPostBySlug(slug: string) {
-        let headers = new Headers();
-        headers.append("Ocp-Apim-Subscription-Key", Config.apiKey);
+	    }
 
-        var result =  this.http.get(Config.postUrl + slug, { headers: headers})
-            .map(res => res.json()
-            .map(data=> {
-                post => new Post();//would need initializers though
-                //not exactly sure on the syntax
-            })
-            return result;
-    }
 }
