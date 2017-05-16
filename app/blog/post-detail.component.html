@@ -1,5 +1,5 @@
 <ActionBar title="" class="action-bar">
-    <NavigationButton text="Go Back" android.systemIcon="ic_menu_back" tap="onNavBtnTap"></NavigationButton>
+    <NavigationButton text="Go Back" (tap)="goBack()" android.systemIcon="ic_menu_back" tap="onNavBtnTap"></NavigationButton>
     <ActionItem text="Bookmark" (tap)="bookmark()" android.systemIcon="ic_menu_set_as" ios.systemIcon="11" ios.position="right" float="right"></ActionItem>
     <ActionItem text="Share" (tap)="share()" android.systemIcon="ic_menu_share_holo_dark" ios.systemIcon="9" ios.position="right" float="right"></ActionItem>
 </ActionBar>
@@ -8,9 +8,10 @@
     <StackLayout>
         <Image src="http://www.fillmurray.com/300/300" stretch="aspectFill"></Image>
         <StackLayout>
-            <GridLayout columns="auto,*,auto" rows="auto" padding="10">
+            <GridLayout columns="auto,*,auto" rows="auto,auto" padding="10">
                 <Button text="Category" col="0" row="0"></Button>
-                <Label text="11 May" class="date" col="2" row="0" paddingTop="10"></Label>
+                <Label text='12 May' class="date" col="2" row="0" paddingTop="10"></Label>
+                <StackLayout class="hr-dark" row="1"></StackLayout>
             </GridLayout>
             <StackLayout paddingLeft="14">
                 <Label [text]='title' class="h1" textWrap="true" paddingBottom="10"></Label>
@@ -18,5 +19,30 @@
                 <Label [text]='body' class="body" textWrap="true"></Label>
             </StackLayout>
         </StackLayout>
+
+        <StackLayout orientation="vertical" paddingTop="40">
+            <Label text="Comment Section Below" class="h1"></Label>
+            <TextView text="{{ someProperty }}"></TextView>
+        </StackLayout>
+
+        <GridLayout tkExampleTitle tkToggleNavButton>
+            <RadListView [items]="comments">
+                <ng-template tkListItemTemplate let-item="item">
+                    <GridLayout class="listItemTemplateGrid" height="75" row="auto" column="auto,*,auto">
+                        <StackLayout row="0" col="0" class="labelsStackLayout" orientation="vertical" [nsRouterLink]="['/post', item.slug]">
+                            <Label [text]="item.message" textWrap="true" class="message"></Label>
+                            <Label [text]="item.name" class="name" verticalAlignment="bottom" textWrap="true"></Label>
+                        </StackLayout>
+
+                        <Image row="0" col="1" src="http://www.fillmurray.com/300/300" class="thumb" horizontalAlignment="right"></Image>
+                        <StackLayout height="2" backgroundColor="Gray" verticalAlignment="bottom" opacity=".5"></StackLayout>
+                    </GridLayout>
+                </ng-template>
+
+                <ListViewGridLayout tkListViewLayout scrollDirection="Vertical" itemHeight="200" spanCount="1"></ListViewGridLayout>
+            </RadListView>
+        </GridLayout>
+
     </StackLayout>
+
 </ScrollView>

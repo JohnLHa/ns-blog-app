@@ -4,15 +4,25 @@ import { NativeScriptHttpModule } from "nativescript-angular/http"
 import { AppRoutingModule } from "./app.routing";
 import { AppComponent } from "./app.component";
 import { LISTVIEW_DIRECTIVES } from 'nativescript-telerik-ui/listview/angular';
+import { NativeScriptUIListViewModule } from "nativescript-telerik-ui/listview/angular";
+import { NativeScriptUISideDrawerModule } from "nativescript-telerik-ui/sidedrawer/angular";
 import { PostsComponent } from "./blog/posts.component"
 import { BlogService } from "./blog/blog.service"
 import { PostDetailComponent } from "./blog/post-detail.component"
+import { TNSFrescoModule } from "nativescript-fresco/angular";
+import { NativeScriptRouterModule } from "nativescript-angular/router";
+import { NativeScriptFormsModule } from "nativescript-angular/forms";
+import { SideDrawerGettingStartedComponent } from "./blog/drawer.component"
+
+
 
 @NgModule({
     bootstrap: [
         AppComponent
     ],
     imports: [
+        TNSFrescoModule,
+        NativeScriptUISideDrawerModule,
         NativeScriptModule,
         NativeScriptHttpModule,
         AppRoutingModule
@@ -21,7 +31,13 @@ import { PostDetailComponent } from "./blog/post-detail.component"
         LISTVIEW_DIRECTIVES,
         AppComponent,
         PostsComponent,
+        SideDrawerGettingStartedComponent,
         PostDetailComponent
+        
+    ],
+    exports: [
+        NativeScriptModule,
+        NativeScriptRouterModule
     ],
     providers: [
         BlogService

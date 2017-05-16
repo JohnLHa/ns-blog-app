@@ -39,7 +39,7 @@ export class BlogService {
 
     getPostBySlug(slug: string) {
 	    let headers = new Headers();
-	    headers.append("Ocp-Apim-Subscription-Key", Config.apiKey);;
+	    headers.append("Ocp-Apim-Subscription-Key", Config.apiKey);
         console.log(Config.postUrl + slug);
 	    return this.http.get(Config.postUrl + slug, { headers: headers})
 	        .map(res => res.json());
@@ -52,5 +52,14 @@ export class BlogService {
 	        // })   .catch(this.handleErrors)
 
 	    }
+    postComment(comment:string, slug: string){
+        let headers = new Headers();
+	    headers.append("Ocp-Apim-Subscription-Key", Config.apiKey);
+        console.log(Config.getCommentUrl + slug);
+
+        return this.http.post(Config.getCommentUrl + slug, {comment}, { headers: headers})
+            .map(res => res.json())
+            .catch(this.handleErrors)
+    }
 
 }
