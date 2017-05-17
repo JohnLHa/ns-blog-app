@@ -13,6 +13,7 @@ import { TNSFrescoModule } from "nativescript-fresco/angular";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { SideDrawerGettingStartedComponent } from "./blog/drawer.component"
+import { CommentComponent } from "./blog/comment.component";
 
 
 
@@ -32,7 +33,8 @@ import { SideDrawerGettingStartedComponent } from "./blog/drawer.component"
         AppComponent,
         PostsComponent,
         SideDrawerGettingStartedComponent,
-        PostDetailComponent
+        PostDetailComponent,
+        CommentComponent
         
     ],
     exports: [

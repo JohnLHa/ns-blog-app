@@ -4,6 +4,7 @@ import { Observable } from "rxjs/Rx";
 import { Config } from "../Config"
 import 'rxjs/add/operator/filter';
 import { Post } from "./post"
+import { Comment } from "./comment"
 
 
 @Injectable()
@@ -52,14 +53,46 @@ export class BlogService {
 	        // })   .catch(this.handleErrors)
 
 	    }
-    postComment(comment:string, slug: string){
+    postComment(comment: Comment, slug: string){
         let headers = new Headers();
 	    headers.append("Ocp-Apim-Subscription-Key", Config.apiKey);
-        console.log(Config.getCommentUrl + slug);
+        console.log(Config.createCommentUrl + slug);
 
-        return this.http.post(Config.getCommentUrl + slug, {comment}, { headers: headers})
+        // fakeComment: {
+        //     "id": "123414141414",
+        //     "email": "abc@lop.com",
+        //     "name": "John",
+        //     "message": "This is a hardcoded comment",
+        //     "dateCreated: 2017-05-16T20:33:15.7187242"
+        // }
+
+        comment.id = "123414141414";
+        comment.email = "abc@lop.com";
+        comment.name = "John";
+        comment.message = "This is a hardcoded message";
+
+        return this.http.post(Config.createCommentUrl + slug, {comment}, { headers: headers})
             .map(res => res.json())
             .catch(this.handleErrors)
+    }
+    
+    getComments(slug: string){
+        let headers = new Headers();
+        headers.append("Ocp-Apim-Subscription-Key", Config.apiKey);
+        
+        var result =  this.http.get(Config.getAllCommentsUrl + slug, { headers: headers})
+            .map(res=>res.json())
+            .map(data=>{
+                let comments = new Array<Comment>();
+                data.forEach((comment) => {
+                    comments.push(new Comment(comment.email, comment.message, comment.user))
+                });
+                return comments;
+            }).catch(this.handleErrors)
+            ;
+
+        return result;
+
     }
 
 }
