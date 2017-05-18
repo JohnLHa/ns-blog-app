@@ -21,14 +21,21 @@ export class PostsComponent implements OnInit {
 
     constructor(private data: BlogService) { }
 
+    //On Init pulls and saves Posts into a post array<Post>
     ngOnInit(): void {
         this.data.posts().subscribe(posts=>{
             posts.forEach(post=>this.posts.push(post))
         });
     }
+
+    //Allows the user to search for a certain blog post.
+    //Needs to be finished.
     public search(){
         alert("You have clicked the search button.");
     }
+
+    //Allows the user to access the navigation drawer.
+    //Needs to be finished.
     public badDrawer(){
         alert("You have clicked on the broken, navDrawer button.");
     }

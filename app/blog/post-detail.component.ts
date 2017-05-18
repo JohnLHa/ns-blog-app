@@ -28,7 +28,8 @@ export class PostDetailComponent implements OnInit {
     body: string;
     slug: string;
     date: Date;
-    phrase= "this is the comment that I've put in";
+    id: string;
+    phrase= "";
 
     @Input() comment: Comment;
 
@@ -114,6 +115,7 @@ export class PostDetailComponent implements OnInit {
 
     }
 
+    //Pulls all Comments from the blog API and stores it into a comments array<Comment>
     getComments() {
         this.blogService.getComments(this.slug)
             .subscribe(comments=>{
@@ -121,31 +123,56 @@ export class PostDetailComponent implements OnInit {
         });
     }
     
+    //Adds a Comment object created from user input to the blog API
     addComment() {
-    if (!this.phrase) { 
-        console.log("it failed");
-        return; 
-    }
-    this.comment = new Comment("abc@gmail.com", this.phrase, "John");
-        console.log("about to post");
-        this.blogService.postComment(this.comment, this.slug)
-            .subscribe(comment => {this.comments.push(comment)
-        });
+        //Checks to make sure a comment went through
+        if (!this.phrase) { 
+            console.log("it failed");
+            return; 
+        }
 
+        //Creates a new comment and posts using the user's information.
+        //Currently hardcoded: email and name. Guid can stay since it's not used.
+        //Needs to be finished.
+        this.comment = new Comment("12345678-9100-poop-guid-amverymature", "abc@gmail.com", this.phrase, "John", new Date());
+            this.blogService.postComment(this.comment, this.slug)
+                .subscribe(comment => {this.comments.push(comment)
+            });
+            alert("Your comment was posted. Refresh the page to see the changes.");
     }
 
+    deleteComment(item: Comment){
+        console.log(item.id);
+
+        //Checks to make sure a comment went through
+        if (!item) { 
+            console.log("it failed");
+            return; 
+        } 
+
+        //Calls BlogService to delete the comment
+        this.blogService.deleteComment(item.id)
+            .subscribe(comments=>{
+                comments.forEach(comment=>this.comments.push(comment))
+            })
+        alert("Your comment was deleted. Refresh the page to see the changes.");
+    }
+
+    //Back button to return to previous page.
     public goBack(){
         this.routerExtensions.back();
     }
+
+    //Share button to share a blog through social media.
+    //Needs to be finished.
     public share(){
         alert("You have pressed the share button.");
     }
+
+    //Saves the blog post to the user's bookmarks.
+    //Needs to be finished.
     public bookmark(){
         alert("You have pressed the bookmark button.");
     }
-    public testAdd(){
- 
-    }
-    
     
 }

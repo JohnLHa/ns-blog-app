@@ -22,24 +22,25 @@
 
         <StackLayout orientation="vertical" paddingTop="40" paddingBottom="40">
             <Label text="Would you like to add a comment?"></Label>
-            <TextField hint="Add a comment here" [text]='phrase'></TextField>
+            <TextField hint="Add a comment here" [(ngModel)]="phrase"></TextField>
             <Button text="Add Comment" (tap)="addComment()" class="commentButton"></Button>
             <Label text="Comment Section Below" class="h1"></Label>
         </StackLayout>
 
         <GridLayout tkExampleTitle tkToggleNavButton>
-            <RadListView [items]="comments">
+            <RadListView [items]="comments" itemSelected="onItemSelected">
                 <ng-template tkListItemTemplate let-item="item">
-                    <GridLayout class="listItemTemplateGrid" height="100" row="auto" column="auto,*,auto">
+                    <GridLayout class="listItemTemplateGrid" height="100" rows="*,auto" columns="*,auto,auto">
                         <StackLayout row="0" col="0" class="labelsStackLayout" orientation="vertical">
                             <Label [text]="item.email" textWrap="true"></Label>
-                            <Label [text]="item.id" textWrap="true"></Label>
+                            <Label [text]="item.name" textWrap="true"></Label>
                             <Label [text]="item.message" textWrap="true"></Label>
-
                         </StackLayout>
-
-                        <Image row="0" col="1" src="http://www.fillmurray.com/300/300" class="thumb" horizontalAlignment="right"></Image>
-                        <StackLayout height="2" backgroundColor="Gray" verticalAlignment="bottom" opacity=".5"></StackLayout>
+                        <StackLayout row="0" col="1" class="delete-container" verticalAlignment="bottom">
+                            <Image src="res://delete" class="deleteButton" (tap)="deleteComment(item)"></Image>
+                        </StackLayout>
+                        <Image row="0" col="2" src="http://www.fillmurray.com/300/300" class="thumb" horizontalAlignment="right"></Image>
+                        <StackLayout row="1" colSpan="3" height="2" backgroundColor="Gray" verticalAlignment="bottom" opacity=".5"></StackLayout>
                     </GridLayout>
                 </ng-template>
 

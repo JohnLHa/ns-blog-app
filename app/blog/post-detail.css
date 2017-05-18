@@ -11,9 +11,14 @@ NavigationButton {
     background-color: white;
 }
 
-Image {
-    height: 200;
+.thumb {
+    height: 80;
+    width: 80;
     vertical-align: top;
+    margin-top: 8;
+    margin-bottom: 8;
+    margin-left: 8;
+    margin-right: 8;
 }
 
 Button {
@@ -44,4 +49,12 @@ Button {
 
 .body {
     color: black;
+}
+
+.deleteButton {
+    height: 20;
+    width: 20;
+    background-color: black;
+    float: right;
+    margin-bottom: 8;
 }

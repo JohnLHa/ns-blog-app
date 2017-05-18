@@ -25,6 +25,7 @@ import { CommentComponent } from "./blog/comment.component";
         TNSFrescoModule,
         NativeScriptUISideDrawerModule,
         NativeScriptModule,
+        NativeScriptFormsModule,
         NativeScriptHttpModule,
         AppRoutingModule
     ],

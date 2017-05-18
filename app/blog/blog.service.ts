@@ -9,12 +9,15 @@ import { Comment } from "./comment"
 
 @Injectable()
 export class BlogService {
+    
     title = "";
     body = "";
     slug = "";
     post = new Post(this.title, this.body, this.slug);
+
     constructor(private http: Http) {}
 
+    //Pulls the Posts from the Blog API and returns the array of Posts to the post component
     posts() {
         let headers = new Headers();
         headers.append("Ocp-Apim-Subscription-Key", Config.apiKey);
@@ -33,55 +36,40 @@ export class BlogService {
         return result;
     }
 
+    //Reports the error for any of the data being pulled or pushed from/to the Blog API
     handleErrors(error, caught) {
         console.log(JSON.stringify(error));
         return Observable.throw(error);
     }
 
+    //Pulls a Post by slug to open up and read
+    //Needs to be fixed like how comments are chosen by the delete function
     getPostBySlug(slug: string) {
 	    let headers = new Headers();
 	    headers.append("Ocp-Apim-Subscription-Key", Config.apiKey);
         console.log(Config.postUrl + slug);
 	    return this.http.get(Config.postUrl + slug, { headers: headers})
 	        .map(res => res.json());
-            
-            // .do(x => console.log(x))
-	        // .map(data=> {
-            //     let post = new Post(data.title, data.body, data.slug);
-            //     post.tags = data.tags;
-            //     return post;
-	        // })   .catch(this.handleErrors)
 
-	    }
+	}
+
+    //Posts a Comment to the Blog API to be posted.
     postComment(comment: Comment, slug: string){
         let headers = new Headers();
 	    headers.append("Content-Type", "application/json");
-        console.log(Config.createCommentUrl + slug);
-
-        // comment: JSON.stringify({
-        //     "id": "123414141414",
-        //     "email": "abc@lop.com",
-        //     "name": "John",
-        //     "message": "This is a hardcoded comment",
-        //     "dateCreated": "2017-05-16T20:33:15.7187242"
-        // })
-
-        comment.id = "123414141414";
-        comment.email = "abc@lop.com";
-        comment.name = "John";
-        comment.message = "This is a hardcoded message";
 
         return this.http.post(Config.createCommentUrl + slug,
             JSON.stringify({
-            "Email": "abc@lop.com",
-            "Message": "This is a hardcoded message",
-            "Name": "John"
+            "Email": comment.email,
+            "Message": comment.message,
+            "Name": comment.name
         }), 
             { headers: headers})
             .map(res => res.json())
             .catch(this.handleErrors)
     }
     
+    //Gets all comments for a blog post and stores them in a Comment array 
     getComments(slug: string){
         let headers = new Headers();
         headers.append("Ocp-Apim-Subscription-Key", Config.apiKey);
@@ -91,7 +79,7 @@ export class BlogService {
             .map(data=>{
                 let comments = new Array<Comment>();
                 data.forEach((comment) => {
-                    comments.push(new Comment(comment.email, comment.message, comment.user))
+                    comments.push(new Comment(comment.id, comment.email, comment.message, comment.user, comment.dateCreated))
                 });
                 return comments;
             }).catch(this.handleErrors)
@@ -100,5 +88,17 @@ export class BlogService {
         return result;
 
     }
+
+    //Gets an id of type GUID and deletes it from the Blog API
+    deleteComment(id: string){
+        let headers = new Headers();
+	    headers.append("Content-Type", "application/json");
+
+        console.log("about to delete this sucka");
+        return this.http.delete(Config.deleteCommentUrl + id)
+            .map(res => res.json())
+            .catch(this.handleErrors);
+    }
+    
 
 }
