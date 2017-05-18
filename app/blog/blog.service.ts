@@ -55,23 +55,29 @@ export class BlogService {
 	    }
     postComment(comment: Comment, slug: string){
         let headers = new Headers();
-	    headers.append("Ocp-Apim-Subscription-Key", Config.apiKey);
+	    headers.append("Content-Type", "application/json");
         console.log(Config.createCommentUrl + slug);
 
-        // fakeComment: {
+        // comment: JSON.stringify({
         //     "id": "123414141414",
         //     "email": "abc@lop.com",
         //     "name": "John",
         //     "message": "This is a hardcoded comment",
-        //     "dateCreated: 2017-05-16T20:33:15.7187242"
-        // }
+        //     "dateCreated": "2017-05-16T20:33:15.7187242"
+        // })
 
         comment.id = "123414141414";
         comment.email = "abc@lop.com";
         comment.name = "John";
         comment.message = "This is a hardcoded message";
 
-        return this.http.post(Config.createCommentUrl + slug, {comment}, { headers: headers})
+        return this.http.post(Config.createCommentUrl + slug,
+            JSON.stringify({
+            "Email": "abc@lop.com",
+            "Message": "This is a hardcoded message",
+            "Name": "John"
+        }), 
+            { headers: headers})
             .map(res => res.json())
             .catch(this.handleErrors)
     }
