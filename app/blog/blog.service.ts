@@ -13,7 +13,6 @@ export class BlogService {
     title = "";
     body = "";
     slug = "";
-    post = new Post(this.title, this.body, this.slug);
 
     constructor(private http: Http) {}
 
@@ -27,7 +26,8 @@ export class BlogService {
             .map(data=>{
                 let posts = new Array<Post>();
                 data.forEach((post) => {
-                    posts.push(new Post(post.title, post.body, post.slug))
+                    posts.push(new Post(post.title, post.body, post.slug, post.isStatic, post.isFeatured,
+                    post.dateCreated, post.datePublished, post.status, post.tags))
                 });
                 return posts;
             }).catch(this.handleErrors)
@@ -46,10 +46,17 @@ export class BlogService {
     //Needs to be fixed like how comments are chosen by the delete function
     getPostBySlug(slug: string) {
 	    let headers = new Headers();
-	    headers.append("Ocp-Apim-Subscription-Key", Config.apiKey);
+	    headers.append("Content-Type", "application/json");
+
         console.log(Config.postUrl + slug);
+
 	    return this.http.get(Config.postUrl + slug, { headers: headers})
-	        .map(res => res.json());
+	        .map(res => res.json())
+            .map(data => {
+                let post = new Post(data.title, data.body, data.slug, data.isStatic, data.isFeatured, 
+                data.dateCreated, data.datePublished, data.status, data.tags);
+                return post;
+            }).catch(this.handleErrors);
 
 	}
 
@@ -66,13 +73,13 @@ export class BlogService {
         }), 
             { headers: headers})
             .map(res => res.json())
-            .catch(this.handleErrors)
+            .catch(this.handleErrors);
     }
     
     //Gets all comments for a blog post and stores them in a Comment array 
     getComments(slug: string){
         let headers = new Headers();
-        headers.append("Ocp-Apim-Subscription-Key", Config.apiKey);
+        headers.append("Content-Type", "application/json");
         
         var result =  this.http.get(Config.getAllCommentsUrl + slug, { headers: headers})
             .map(res=>res.json())
@@ -94,7 +101,6 @@ export class BlogService {
         let headers = new Headers();
 	    headers.append("Content-Type", "application/json");
 
-        console.log("about to delete this sucka");
         return this.http.delete(Config.deleteCommentUrl + id)
             .map(res => res.json())
             .catch(this.handleErrors);

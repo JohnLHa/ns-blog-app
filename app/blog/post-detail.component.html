@@ -10,13 +10,13 @@
         <StackLayout>
             <GridLayout columns="auto,*,auto" rows="auto,auto" padding="10">
                 <Button text="Category" col="0" row="0" class="categoryButton"></Button>
-                <Label text='12 May' class="date" col="2" row="0" paddingTop="10"></Label>
+                <Label [text]='curDate' class="date" col="2" row="0" paddingTop="10"></Label>
                 <StackLayout class="hr-dark" row="1"></StackLayout>
             </GridLayout>
             <StackLayout paddingLeft="14">
-                <Label [text]='title' class="h1" textWrap="true" paddingBottom="10"></Label>
+                <Label [text]="post.title" class="h1" textWrap="true" paddingBottom="10"></Label>
                 <!--<Label [text]='slug' class="h4" textWrap="true"></Label>-->
-                <Label [text]='body' class="body" textWrap="true"></Label>
+                <Label [text]="post.body" class="body" textWrap="true"></Label>
             </StackLayout>
         </StackLayout>
 
@@ -28,7 +28,7 @@
         </StackLayout>
 
         <GridLayout tkExampleTitle tkToggleNavButton>
-            <RadListView [items]="comments" itemSelected="onItemSelected">
+            <RadListView [items]="comments">
                 <ng-template tkListItemTemplate let-item="item">
                     <GridLayout class="listItemTemplateGrid" height="100" rows="*,auto" columns="*,auto,auto">
                         <StackLayout row="0" col="0" class="labelsStackLayout" orientation="vertical">

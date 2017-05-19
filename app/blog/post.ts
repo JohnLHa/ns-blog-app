@@ -1,10 +1,5 @@
 export class Post {
-    isStatic: boolean;
-    isFeatured: boolean;
-    dateCreated: string;
-    datePublished: string;
-    status: string;
-    tags: string;
 
-    constructor(public title: string, public body: String, public slug: string) {}
+    constructor(public title: string, public body: string, public slug: string, public isStatic: boolean, public isFeatured: boolean, public dateCreated: Date, public datePublished: Date,
+    public status: string, public tags: string, ) {}
 }
