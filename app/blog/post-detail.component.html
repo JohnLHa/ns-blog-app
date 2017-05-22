@@ -8,31 +8,35 @@
     <StackLayout>
         <Image src="http://www.fillmurray.com/300/300" stretch="aspectFill"></Image>
         <StackLayout>
+            <!--Category button and date-->
             <GridLayout columns="auto,*,auto" rows="auto,auto" padding="10">
                 <Button text="Category" col="0" row="0" class="categoryButton"></Button>
                 <Label [text]='curDate' class="date" col="2" row="0" paddingTop="10"></Label>
                 <StackLayout class="hr-dark" row="1"></StackLayout>
             </GridLayout>
+            <!--Title and body of post-->
             <StackLayout paddingLeft="14">
                 <Label [text]="post.title" class="h1" textWrap="true" paddingBottom="10"></Label>
-                <!--<Label [text]='slug' class="h4" textWrap="true"></Label>-->
                 <Label [text]="post.body" class="body" textWrap="true"></Label>
             </StackLayout>
         </StackLayout>
 
+        <!--Comment adding section-->
         <StackLayout orientation="vertical" paddingTop="40" paddingBottom="40">
             <Label text="Would you like to add a comment?"></Label>
             <TextField hint="Add a comment here" [(ngModel)]="phrase"></TextField>
-            <Button text="Add Comment" (tap)="addComment()" class="commentButton"></Button>
+            <Button text="Add Comment" (tap)="addComment()" class="commentButton" [nsRouterLink]="['/post', post.slug]"></Button>
             <Label text="Comment Section Below" class="h1"></Label>
         </StackLayout>
 
+        <!--List of posted comments-->
         <GridLayout tkExampleTitle tkToggleNavButton>
             <RadListView [items]="comments">
                 <ng-template tkListItemTemplate let-item="item">
                     <GridLayout class="listItemTemplateGrid" height="100" rows="*,auto" columns="*,auto,auto">
                         <StackLayout row="0" col="0" class="labelsStackLayout" orientation="vertical">
                             <Label [text]="item.email" textWrap="true"></Label>
+                            <!--Name doesn't show up for some reason-->
                             <Label [text]="item.name" textWrap="true"></Label>
                             <Label [text]="item.message" textWrap="true"></Label>
                         </StackLayout>

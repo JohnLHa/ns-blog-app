@@ -4,6 +4,8 @@
         <ActionItem text="Navigation Drawer" class="navdrawer" ios.position="left"></ActionItem>-->
     <ActionItem text="Search" class="search-icon" (tap)="search()" android.systemIcon="ic_menu_search" ios.systemIcon="12" ios.position="right"></ActionItem>
 </ActionBar>
+
+<!--List of posts-->
 <StackLayout orientation="vertical">
     <GridLayout tkExampleTitle tkToggleNavButton>
         <RadListView [items]="posts">
@@ -11,7 +13,7 @@
                 <GridLayout class="listItemTemplateGrid" height="100" row="auto" column="auto,*,auto">
                     <StackLayout row="0" col="0" class="labelsStackLayout" orientation="vertical" [nsRouterLink]="['/post', item.slug]">
                         <Label [text]="item.title" textWrap="true" class="title"></Label>
-                        <Label [text]="item.slug" class="slug" verticalAlignment="bottom" textWrap="true"></Label>
+                        <Label [text]="item.body" class="body" verticalAlignment="bottom" textWrap="true"></Label>
                     </StackLayout>
 
                     <Image row="0" col="1" src="http://www.fillmurray.com/300/300" class="thumb" horizontalAlignment="right"></Image>
@@ -23,6 +25,7 @@
         </RadListView>
     </GridLayout>
 
+    <!--Future Nav Drawer in the making-->
     <RadSideDrawer tkExampleTitle tkToggleNavButton>
         <StackLayout tkDrawerContent class="sideStackLayout">
             <StackLayout class="sideTitleStackLayout">

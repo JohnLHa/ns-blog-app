@@ -22,6 +22,7 @@
     "nativescript-angular": "3.0.0",
     "nativescript-fresco": "^3.0.2",
     "nativescript-intl": "^3.0.0",
+    "nativescript-pulltorefresh": "^2.0.0-rc.1",
     "nativescript-sidedrawer": "^1.0.6",
     "nativescript-statusbar": "^1.0.0",
     "nativescript-telerik-ui": "2.0.1",

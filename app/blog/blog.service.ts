@@ -48,8 +48,6 @@ export class BlogService {
 	    let headers = new Headers();
 	    headers.append("Content-Type", "application/json");
 
-        console.log(Config.postUrl + slug);
-
 	    return this.http.get(Config.postUrl + slug, { headers: headers})
 	        .map(res => res.json())
             .map(data => {

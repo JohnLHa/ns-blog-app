@@ -12,11 +12,11 @@ import { CommentComponent } from "./comment.component";
 import { PageRoute } from "nativescript-angular/router";
 
 @Component({
-    selector: "ns-details",
+    selector: "post-details",
     moduleId: module.id,
     templateUrl: "./post-detail.component.html",
     styleUrls: ["./post-detail.css"],
-    providers: [BlogService, CommentComponent]
+    providers: [BlogService]
 })
 
 export class PostDetailComponent implements OnInit {
@@ -29,7 +29,7 @@ export class PostDetailComponent implements OnInit {
     body: string;
     slug: string;
     id: string;
-    curDate= new Date();
+    curDate = this.getDate();
     phrase= "";
 
     @Input() comment: Comment;
@@ -38,8 +38,8 @@ export class PostDetailComponent implements OnInit {
         private routerExtensions: RouterExtensions,
         private blogService: BlogService,
         private route: ActivatedRoute,
-        page: Page,
-        commentComponent: CommentComponent,
+        private page: Page,
+        private commentComponent: CommentComponent,
         private pageRoute: PageRoute
 
     )
@@ -54,6 +54,7 @@ export class PostDetailComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        
         this.getPostInfo();
         this.getComments();
     }
@@ -85,16 +86,15 @@ export class PostDetailComponent implements OnInit {
 
         //Creates a new comment and posts using the user's information.
         //Currently hardcoded: email and name. Guid can stay since it's not used.
-        //Needs to be finished.
+        //Needs to be finished after login section works.
             this.comment = new Comment("12345678-9100-poop-guid-amverymature", "abc@gmail.com", this.phrase, "John", new Date());
             this.blogService.postComment(this.comment, this.slug)
                 .subscribe(comment => {this.comments.push(comment)
             });
-            alert("Your comment was posted. Refresh the page to see the changes.");
+            alert("Your comment has been posted below.");
     }
 
     deleteComment(item: Comment){
-        console.log(item.id);
 
         //Checks to make sure a comment went through
         if (!item) { 
@@ -107,7 +107,7 @@ export class PostDetailComponent implements OnInit {
             .subscribe(comments=>{
                 comments.forEach(comment=>this.comments.push(comment))
             });
-        alert("Your comment was deleted. Refresh the page to see the changes.");
+        alert("Your comment was deleted. Please refresh.");
     }
 
     //Back button to return to previous page.
@@ -125,6 +125,15 @@ export class PostDetailComponent implements OnInit {
     //Needs to be finished.
     public bookmark(){
         alert("You have pressed the bookmark button.");
+    }
+
+    public getDate(){
+        var d = new Date();
+        var months = new Array("January", "February", "March", 
+            "April", "May", "June", "July", "August", "September", 
+            "October", "November", "December");
+
+        return d.getDate() + " " + months[d.getMonth()];
     }
     
 }
