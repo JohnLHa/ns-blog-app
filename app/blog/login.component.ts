@@ -5,7 +5,7 @@ import * as dialogs from "ui/dialogs";
     moduleId: module.id,
     templateUrl: "./login.html"
 })
-export class LoginDialogComponent {
+export class LoginComponent {
     displayLoginDialog() {
         // >> login-dialog-code
         let options = {

@@ -25,7 +25,12 @@
         <StackLayout orientation="vertical" paddingTop="40" paddingBottom="40">
             <Label text="Would you like to add a comment?"></Label>
             <TextField hint="Add a comment here" [(ngModel)]="phrase"></TextField>
-            <Button text="Add Comment" (tap)="addComment()" class="commentButton" [nsRouterLink]="['/post', post.slug]"></Button>
+
+            <StackLayout orientation="horizontal">
+                <Button text="Add Comment" (tap)="addComment()" class="commentButton" [nsRouterLink]="['/post', post.slug]"></Button>
+                <Button text="Login" (tap)="login()" class="commentButton"></Button>
+            </StackLayout>
+
             <Label text="Comment Section Below" class="h1"></Label>
         </StackLayout>
 

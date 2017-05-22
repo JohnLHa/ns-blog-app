@@ -1,15 +1,17 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 
 import { Page } from "ui/page";
 import { Post } from "./post";
 import { BlogService } from "./blog.service";
 import { RouterExtensions} from "nativescript-angular/router";
-import { Comment } from "./comment";
-import { TextView } from "ui/text-view";
-import { CommentComponent } from "./comment.component";
-import { PageRoute } from "nativescript-angular/router";
+import { Comment } from "./comment"; 
+import { TextView } from "ui/text-view"; //Possibly remove
+import { CommentComponent } from "./comment.component"; //Still needs to be used
+import { PageRoute } from "nativescript-angular/router"; 
+
+import * as dialogs from "ui/dialogs"; //Used for the login dialog
 
 @Component({
     selector: "post-details",
@@ -39,7 +41,6 @@ export class PostDetailComponent implements OnInit {
         private blogService: BlogService,
         private route: ActivatedRoute,
         private page: Page,
-        private commentComponent: CommentComponent,
         private pageRoute: PageRoute
 
     )
@@ -135,5 +136,29 @@ export class PostDetailComponent implements OnInit {
 
         return d.getDate() + " " + months[d.getMonth()];
     }
-    
+
+    login(){
+        dialogs.login({
+            title: "Login",
+            message: "Please login using your email and password",
+            okButtonText: "Login",
+            cancelButtonText: "Cancel",
+            neutralButtonText: "Sign Up",
+            userName: "",
+            password: ""
+        }).then(r=> {
+            if(r.result){
+                console.log("Result was true or Login button");
+            }
+            else if(r.result == undefined){
+                console.log("Result was undefined or Register button");
+            }
+            else if (!r.result){
+                console.log("Result was false or Cancel button");
+            }
+
+        });
+
+    }
+
 }
