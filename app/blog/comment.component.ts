@@ -24,6 +24,7 @@ export class CommentComponent implements OnInit {
   slug: string;
   post: Post;
   phrase: string;
+  isLoading = false;
 
     constructor (
         private blogService: BlogService,
@@ -39,6 +40,8 @@ export class CommentComponent implements OnInit {
     }
 
     ngOnInit() { 
+        this.isLoading = true;
+        this.getPostInfo();
         this.getComments(); 
         
     }   
@@ -48,8 +51,11 @@ export class CommentComponent implements OnInit {
         this.blogService.getComments(this.slug)
             .subscribe(comments=>{
             comments.forEach(comment=>this.comments.push(comment))
-            
         });
+        for(var i in this.comments){
+            console.log(this.comments[i].name);
+        }
+        this.isLoading = false;
     }
         
     //Adds a Comment object to the blog API from user input
@@ -63,7 +69,7 @@ export class CommentComponent implements OnInit {
         //Creates a new comment and posts using the user's information.
         //Currently hardcoded: email and name. Guid can stay since it's not used.
         //Needs to be finished after login section works.
-            this.comment = new Comment("12345678-9100-poop-guid-amverymature", "abc@gmail.com", this.phrase, "John", new Date());
+            this.comment = new Comment("12345678-9100-poop-guid-amverymature", "abc@gmail.com", "John", this.phrase, new Date());
             this.blogService.postComment(this.comment, this.slug)
                 .subscribe(comment => {this.comments.push(comment)
             });
@@ -86,6 +92,16 @@ export class CommentComponent implements OnInit {
         alert("Your comment was deleted. Pull up to refresh.");
     }
 
+    //Gets post details. Needed for retaining modularity in adding and deleting comments
+    getPostInfo(){
+        this.blogService.getPostBySlug(this.slug)
+            .subscribe(x => { 
+                JSON.stringify(x);
+                this.post = x;
+        });
+    }
+
+    //Will be replaced with auth0 later.
     login(){
         dialogs.login({
             title: "Login",

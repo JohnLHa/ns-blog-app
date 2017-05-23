@@ -14,8 +14,6 @@ import { NativeScriptRouterModule } from "nativescript-angular/router";
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { SideDrawerGettingStartedComponent } from "./blog/drawer.component"
 import { CommentComponent } from "./blog/comment.component";
-import { LoginComponent } from "./blog/login.component";
-
 
 
 @NgModule({
@@ -36,8 +34,7 @@ import { LoginComponent } from "./blog/login.component";
         PostsComponent,
         SideDrawerGettingStartedComponent,
         PostDetailComponent,
-        CommentComponent,
-        LoginComponent
+        CommentComponent
         
     ],
     exports: [

@@ -5,8 +5,9 @@ import { ActionItem } from "ui/action-bar";
 import { Observable } from "data/observable";
 import { RadSideDrawerComponent, SideDrawerType } from "nativescript-telerik-ui/sidedrawer/angular";
 import { RadSideDrawer } from 'nativescript-telerik-ui/sidedrawer';
-import { BlogService } from "./blog.service"
-import { SideDrawerGettingStartedComponent } from "./drawer.component"
+import { BlogService } from "./blog.service";
+import { SideDrawerGettingStartedComponent } from "./drawer.component";
+
 
 @Component({
     selector: "blog-posts",

@@ -14,6 +14,8 @@
                 <Label [text]='curDate' class="date" col="2" row="0" paddingTop="10"></Label>
                 <StackLayout class="hr-dark" row="1"></StackLayout>
             </GridLayout>
+            <ActivityIndicator [busy]="isLoading" [visibility]="isLoading ? 'visible' : 'collapse'" row="1" horizontalAlignment="center" verticalAlignment="center"></ActivityIndicator>
+
             <!--Title and body of post-->
             <StackLayout paddingLeft="14">
                 <Label [text]="post.title" class="h1" textWrap="true" paddingBottom="10"></Label>
@@ -21,6 +23,7 @@
             </StackLayout>
         </StackLayout>
 
+        <!--CommentComponent call-->
         <comment-section></comment-section>
 
     </StackLayout>

@@ -66,8 +66,8 @@ export class BlogService {
         return this.http.post(Config.createCommentUrl + slug,
             JSON.stringify({
             "Email": comment.email,
-            "Message": comment.message,
-            "Name": comment.name
+            "Name": comment.name,
+            "Message": comment.message
         }), 
             { headers: headers})
             .map(res => res.json())
@@ -84,7 +84,7 @@ export class BlogService {
             .map(data=>{
                 let comments = new Array<Comment>();
                 data.forEach((comment) => {
-                    comments.push(new Comment(comment.id, comment.email, comment.message, comment.user, comment.dateCreated))
+                    comments.push(new Comment(comment.id, comment.email, comment.name, comment.message, comment.dateCreated))
                 });
                 return comments;
             }).catch(this.handleErrors)

@@ -22,6 +22,7 @@ export class PostDetailComponent implements OnInit {
     thePost: Post;
     slug: string;
     curDate = this.getDate();
+    isLoading = false;
 
 
     constructor(
@@ -43,6 +44,7 @@ export class PostDetailComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.isLoading = true;
         this.getPostInfo();
     }
 
@@ -53,6 +55,7 @@ export class PostDetailComponent implements OnInit {
                 JSON.stringify(x);
                 this.post = x;
         });
+        this.isLoading = false;
     }
 
     //Back button to return to previous page.

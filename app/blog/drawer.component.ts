@@ -7,8 +7,8 @@ import { RadSideDrawer } from 'nativescript-telerik-ui/sidedrawer';
 
 @Component({
     moduleId: module.id,
-    selector: "tk-sidedrawer-getting-started",
-    templateUrl: "./posts.component.html",
+    selector: "my-drawer",
+    templateUrl: "./drawer.html",
     styleUrls: ['drawer.css']
 })
 export class SideDrawerGettingStartedComponent implements AfterViewInit, OnInit {
