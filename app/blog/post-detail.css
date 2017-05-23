@@ -1,5 +1,5 @@
 ActionBar {
-    background-color: black;
+    background-color: #212121;
     color: white;
     vertical-align: center;
     text-align: center;
@@ -11,29 +11,12 @@ NavigationButton {
     background-color: white;
 }
 
-.thumb {
-    height: 80;
-    width: 80;
-    vertical-align: top;
-    margin-top: 8;
-    margin-bottom: 8;
-    margin-left: 8;
-    margin-right: 8;
-}
-
 Button {
     color: white;
     background-color: #196EFF;
     height: 40;
-}
-
-.categoryButton {
     float: left;
     width: 100;
-}
-
-.commentButton {
-    width: 125;
 }
 
 .date {
@@ -49,12 +32,4 @@ Button {
 
 .body {
     color: black;
-}
-
-.deleteButton {
-    height: 20;
-    width: 20;
-    background-color: black;
-    float: right;
-    margin-bottom: 8;
 }

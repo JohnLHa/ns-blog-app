@@ -8,6 +8,7 @@ import { BlogService } from "./blog.service";
 import { RouterExtensions} from "nativescript-angular/router";
 import { Comment } from "./comment"; 
 import { PageRoute } from "nativescript-angular/router"; 
+import * as SocialShare from "nativescript-social-share";
 
 @Component({
     selector: "post-details",
@@ -18,7 +19,7 @@ import { PageRoute } from "nativescript-angular/router";
 })
 
 export class PostDetailComponent implements OnInit {
-    post: Observable<Post>;
+    post: Post;
     thePost: Post;
     slug: string;
     curDate = this.getDate();
@@ -64,15 +65,20 @@ export class PostDetailComponent implements OnInit {
     }
 
     //Share button to share a blog through social media.
-    //Needs to be finished.
     public share(){
-        alert("You have pressed the share button.");
+        SocialShare.shareText(this.post.body, this.post.title);
     }
 
     //Saves the blog post to the user's bookmarks.
     //Needs to be finished.
     public bookmark(){
         alert("You have pressed the bookmark button.");
+    }
+
+    //Goes to the future category page.
+    //Needs to be finished.
+    public category(){
+        alert("You have pressed the category button.");
     }
 
     public getDate(){

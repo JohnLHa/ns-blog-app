@@ -12,7 +12,7 @@ import { RadSideDrawer } from 'nativescript-telerik-ui/sidedrawer';
     styleUrls: ['drawer.css']
 })
 export class SideDrawerGettingStartedComponent implements AfterViewInit, OnInit {
-    private _mainContentText: string;
+    isDrawerOpen = false;
 
     constructor(private _changeDetectionRef: ChangeDetectorRef) {
     }
@@ -26,23 +26,25 @@ export class SideDrawerGettingStartedComponent implements AfterViewInit, OnInit 
     }
 
     ngOnInit() {
-        this.mainContentText = "SideDrawer for NativeScript can be easily setup in the HTML definition of your page by defining tkDrawerContent and tkMainContent. The component has a default transition and position and also exposes notifications related to changes in its state. Swipe from left to open side drawer.";
+       
     }
 
-    get mainContentText() {
-        return this._mainContentText;
-    }
-
-    set mainContentText(value: string) {
-        this._mainContentText = value;
+    //Allows the user to search for a certain blog post.
+    //Needs to be finished.
+    public search(){
+        alert("You have clicked the search button.");
     }
 
     public openDrawer() {
-        console.log("Button works doe");
-        this.drawer.showDrawer();
-    }
 
-    public onCloseDrawerTap() {
-       this.drawer.closeDrawer();
+        if(this.isDrawerOpen){
+            this.drawer.closeDrawer();
+            this.isDrawerOpen = false;
+        }
+        else{
+            this.drawer.showDrawer();
+            this.isDrawerOpen = true;
+        }
+
     }
 }

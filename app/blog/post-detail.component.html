@@ -1,5 +1,5 @@
 <ActionBar title="" class="action-bar">
-    <NavigationButton text="Go Back" (tap)="goBack()" android.systemIcon="ic_menu_back" tap="onNavBtnTap"></NavigationButton>
+    <NavigationButton text="Go Back" (tap)="goBack()" android.systemIcon="ic_menu_back"></NavigationButton>
     <ActionItem text="Bookmark" (tap)="bookmark()" android.systemIcon="ic_menu_set_as" ios.systemIcon="11" ios.position="right" float="right"></ActionItem>
     <ActionItem text="Share" (tap)="share()" android.systemIcon="ic_menu_share_holo_dark" ios.systemIcon="9" ios.position="right" float="right"></ActionItem>
 </ActionBar>
@@ -10,7 +10,7 @@
         <StackLayout>
             <!--Category button and date-->
             <GridLayout columns="auto,*,auto" rows="auto,auto" padding="10">
-                <Button text="Category" col="0" row="0" class="categoryButton"></Button>
+                <Button text="Category" col="0" row="0" class="categoryButton" (tap)="category()"></Button>
                 <Label [text]='curDate' class="date" col="2" row="0" paddingTop="10"></Label>
                 <StackLayout class="hr-dark" row="1"></StackLayout>
             </GridLayout>
@@ -22,6 +22,8 @@
                 <Label [text]="post.body" class="body" textWrap="true"></Label>
             </StackLayout>
         </StackLayout>
+
+
 
         <!--CommentComponent call-->
         <comment-section></comment-section>

@@ -28,18 +28,5 @@ export class PostsComponent implements OnInit {
             posts.forEach(post=>this.posts.push(post))
         });
     }
-
-    //Allows the user to search for a certain blog post.
-    //Needs to be finished.
-    public search(){
-        alert("You have clicked the search button.");
-    }
-
-    //Allows the user to access the navigation drawer.
-    //Needs to be finished.
-    public badDrawer(){
-        alert("You have clicked on the broken, navDrawer button.");
-    }
-
 }
 

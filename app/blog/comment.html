@@ -1,5 +1,6 @@
 <!--Comment adding section-->
-<StackLayout orientation="vertical" paddingTop="40" paddingBottom="40">
+<StackLayout orientation="vertical" paddingTop="20" paddingBottom="40">
+    <StackLayout backgroundColor="Gray" verticalAlignment="bottom" opacity=".5"></StackLayout>
     <Label text="Would you like to add a comment?"></Label>
     <TextField hint="Add a comment here" [(ngModel)]="phrase"></TextField>
 
@@ -11,20 +12,32 @@
     <Label text="Comment Section Below" class="h1"></Label>
 </StackLayout>
 <ActivityIndicator [busy]="isLoading" [visibility]="isLoading ? 'visible' : 'collapse'" row="1" horizontalAlignment="center" verticalAlignment="center"></ActivityIndicator>
+
+
 <!--List of posted comments-->
+<StackLayout height="2" backgroundColor="Gray" verticalAlignment="bottom" opacity=".5"></StackLayout>
 <GridLayout tkExampleTitle tkToggleNavButton>
     <RadListView [items]="comments">
         <ng-template tkListItemTemplate let-item="item">
-            <GridLayout class="listItemTemplateGrid" height="100" rows="*,auto" columns="*,auto,auto">
+            <!--Comment box layout-->
+            <GridLayout class="listItemTemplateGrid" rows="auto, *" columns="*,auto, auto">
                 <StackLayout row="0" col="0" class="labelsStackLayout" orientation="vertical">
-                    <Label [text]="item.email" textWrap="true"></Label>
-                    <Label [text]="item.name" textWrap="true"></Label>
+                    <StackLayout row="0" orientation="horizontal">
+                        <Label text="User email: "></Label>
+                        <Label [text]="item.email" textWrap="true"></Label>
+                    </StackLayout>
+                    <StackLayout orientation="horizontal">
+                        <Label text="User name: "></Label>
+                        <Label [text]="item.name" textWrap="true"></Label>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout row="1" orientation="horizontal">
                     <Label [text]="item.message" textWrap="true"></Label>
                 </StackLayout>
-                <StackLayout row="0" col="1" class="delete-container" verticalAlignment="bottom">
+                <StackLayout row="0" col="2" class="delete-container" verticalAlignment="top">
                     <Image src="res://delete" class="deleteButton" (tap)="deleteComment(item)" [nsRouterLink]="['/post', post.slug]"></Image>
                 </StackLayout>
-                <Image row="0" col="2" src="http://www.fillmurray.com/300/300" class="thumb" horizontalAlignment="right"></Image>
+                <Image row="1" col="1" src="http://www.fillmurray.com/300/300" class="thumb" horizontalAlignment="right"></Image>
                 <StackLayout row="1" colSpan="3" height="2" backgroundColor="Gray" verticalAlignment="bottom" opacity=".5"></StackLayout>
             </GridLayout>
         </ng-template>

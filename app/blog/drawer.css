@@ -1,3 +1,10 @@
+ActionBar {
+    background-color: #212121;
+    color: white;
+    vertical-align: center;
+    text-align: center;
+}
+
 button {
     font-size: 15;
     text-align: center;
@@ -14,19 +21,24 @@ button {
 }
 
 .sideStackLayout {
-    background-color: gray;
+    background-color: #2F2F2F;
 }
 
 .sideTitleStackLayout {
     height: 56;
     text-align: center;
     vertical-align: center;
+    float: left;
+    color: white;
+    font-size: 20;
 }
 
 .sideLabel {
+    color: #848484;
     padding: 10;
 }
 
-.sideLightGrayLabel {
-    background-color: lightgray;
+.sideLabel:hover {
+    background-color: #222222;
+    color: goldenrod;
 }

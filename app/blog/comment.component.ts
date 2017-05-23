@@ -14,7 +14,7 @@ import * as dialogs from "ui/dialogs"; //Used for the login dialog
     selector: "comment-section",
     moduleId: module.id,
     templateUrl: "./comment.html",
-    styleUrls: ["./post-detail.css"],
+    styleUrls: ["./comment.css"],
     providers: [BlogService, PostDetailComponent]
 })
 
