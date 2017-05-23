@@ -21,41 +21,7 @@
             </StackLayout>
         </StackLayout>
 
-        <!--Comment adding section-->
-        <StackLayout orientation="vertical" paddingTop="40" paddingBottom="40">
-            <Label text="Would you like to add a comment?"></Label>
-            <TextField hint="Add a comment here" [(ngModel)]="phrase"></TextField>
-
-            <StackLayout orientation="horizontal">
-                <Button text="Add Comment" (tap)="addComment()" class="commentButton" [nsRouterLink]="['/post', post.slug]"></Button>
-                <Button text="Login" (tap)="login()" class="commentButton"></Button>
-            </StackLayout>
-
-            <Label text="Comment Section Below" class="h1"></Label>
-        </StackLayout>
-
-        <!--List of posted comments-->
-        <GridLayout tkExampleTitle tkToggleNavButton>
-            <RadListView [items]="comments">
-                <ng-template tkListItemTemplate let-item="item">
-                    <GridLayout class="listItemTemplateGrid" height="100" rows="*,auto" columns="*,auto,auto">
-                        <StackLayout row="0" col="0" class="labelsStackLayout" orientation="vertical">
-                            <Label [text]="item.email" textWrap="true"></Label>
-                            <!--Name doesn't show up for some reason-->
-                            <Label [text]="item.name" textWrap="true"></Label>
-                            <Label [text]="item.message" textWrap="true"></Label>
-                        </StackLayout>
-                        <StackLayout row="0" col="1" class="delete-container" verticalAlignment="bottom">
-                            <Image src="res://delete" class="deleteButton" (tap)="deleteComment(item)"></Image>
-                        </StackLayout>
-                        <Image row="0" col="2" src="http://www.fillmurray.com/300/300" class="thumb" horizontalAlignment="right"></Image>
-                        <StackLayout row="1" colSpan="3" height="2" backgroundColor="Gray" verticalAlignment="bottom" opacity=".5"></StackLayout>
-                    </GridLayout>
-                </ng-template>
-
-                <ListViewGridLayout tkListViewLayout scrollDirection="Vertical" itemHeight="200" spanCount="1"></ListViewGridLayout>
-            </RadListView>
-        </GridLayout>
+        <comment-section></comment-section>
 
     </StackLayout>
 

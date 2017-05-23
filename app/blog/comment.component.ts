@@ -1,49 +1,57 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 
+import { PageRoute } from "nativescript-angular/router"; 
 import { BlogService } from "./blog.service";
 import { RouterExtensions} from "nativescript-angular/router";
 import { Comment } from "./comment";
 import { Post } from "./post"
+import { PostDetailComponent } from "./post-detail.component";
+import * as dialogs from "ui/dialogs"; //Used for the login dialog
 
 @Component({
     selector: "comment-section",
     moduleId: module.id,
-    templateUrl: "./post-detail.component.html",
-    providers: [BlogService]
+    templateUrl: "./comment.html",
+    styleUrls: ["./post-detail.css"],
+    providers: [BlogService, PostDetailComponent]
 })
 
 export class CommentComponent implements OnInit {
-  errorMessage: string;
   comment: Comment;
-  comments: Comment[];
-  mode = 'Observable';
+  comments: Array<Comment> = [];
   slug: string;
   post: Post;
   phrase: string;
 
-  constructor (private blogService: BlogService) {}
-
-  ngOnInit() { this.getComments(); }
-
-//Pulls the current Post info using the slug.
-    getPostInfo(){
-        this.blogService.getPostBySlug(this.slug)
-            .subscribe(x => { 
-                JSON.stringify(x);
-                this.post = x;
+    constructor (
+        private blogService: BlogService,
+        private pageRoute: PageRoute
+    ) 
+    {
+        this.pageRoute.activatedRoute
+            .switchMap(activatedRoute => activatedRoute.params)
+            .forEach((params) => { 
+                this.slug = params["id"];
+                this.post = params["id"]; //don't know why this is needed, but can't function without it
         });
     }
+
+    ngOnInit() { 
+        this.getComments(); 
+        
+    }   
 
     //Pulls all Comments from the blog API and stores it into a comments array<Comment>
     getComments() {
         this.blogService.getComments(this.slug)
             .subscribe(comments=>{
             comments.forEach(comment=>this.comments.push(comment))
+            
         });
     }
-    
+        
     //Adds a Comment object to the blog API from user input
     addComment() {
         //Checks to make sure a comment went through
@@ -59,12 +67,11 @@ export class CommentComponent implements OnInit {
             this.blogService.postComment(this.comment, this.slug)
                 .subscribe(comment => {this.comments.push(comment)
             });
+            
             alert("Your comment was posted. Pull up to refresh.");
     }
 
     deleteComment(item: Comment){
-        console.log(item.id);
-
         //Checks to make sure a comment went through
         if (!item) { 
             console.log("Comment was not found.");
@@ -77,5 +84,29 @@ export class CommentComponent implements OnInit {
                 comments.forEach(comment=>this.comments.push(comment))
             });
         alert("Your comment was deleted. Pull up to refresh.");
+    }
+
+    login(){
+        dialogs.login({
+            title: "Login",
+            message: "Please login using your email and password",
+            okButtonText: "Login",
+            cancelButtonText: "Cancel",
+            neutralButtonText: "Sign Up",
+            userName: "",
+            password: ""
+        }).then(r=> {
+            if(r.result){
+                console.log("Result was true or Login button");
+            }
+            else if(r.result == undefined){
+                console.log("Result was undefined or Register button");
+            }
+            else if (!r.result){
+                console.log("Result was false or Cancel button");
+            }
+
+        });
+
     }
 }
