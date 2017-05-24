@@ -1,50 +1,46 @@
-<!--<ActionBar title="Feed" class="action-bar">
-    <NavigationButton text="Navigation Drawer" (tap)="navDrawer()" class="navdrawer" android.systemIcon="ic_menu_moreoverflow"></NavigationButton>-->
-<my-drawer></my-drawer>
-<!--<ActionItem text="Search" class="search-icon" (tap)="search()" android.systemIcon="ic_menu_search" ios.systemIcon="12" ios.position="right"></ActionItem>
-</ActionBar>-->
-
-<!--List of posts-->
 <StackLayout orientation="vertical">
-    <GridLayout tkExampleTitle tkToggleNavButton>
-        <RadListView [items]="posts">
-            <ng-template tkListItemTemplate let-item="item">
-                <GridLayout class="listItemTemplateGrid" height="100" row="auto" column="auto,*,auto">
-                    <StackLayout row="0" col="0" class="labelsStackLayout" orientation="vertical" [nsRouterLink]="['/post', item.slug]">
-                        <Label [text]="item.title" textWrap="true" class="title"></Label>
-                        <Label [text]="item.body" class="body" verticalAlignment="bottom" textWrap="true"></Label>
-                    </StackLayout>
+    <search-bar *ngIf="isSearching"></search-bar>
+    <!--List of posts-->
+    <StackLayout orientation="vertical">
+        <GridLayout tkExampleTitle tkToggleNavButton>
+            <RadListView [items]="posts">
+                <ng-template tkListItemTemplate let-item="item">
+                    <GridLayout class="listItemTemplateGrid" height="100" row="auto" column="auto,*,auto">
+                        <StackLayout row="0" col="0" class="labelsStackLayout" orientation="vertical" [nsRouterLink]="['/post', item.slug]">
+                            <Label [text]="item.title" textWrap="true" class="title"></Label>
+                            <Label [text]="item.body" class="body" verticalAlignment="bottom" textWrap="true"></Label>
+                        </StackLayout>
 
-                    <Image row="0" col="1" src="http://www.fillmurray.com/300/300" class="thumb" horizontalAlignment="right"></Image>
-                    <StackLayout height="2" backgroundColor="Gray" verticalAlignment="bottom" opacity=".5"></StackLayout>
-                </GridLayout>
-            </ng-template>
+                        <Image row="0" col="1" src="http://www.fillmurray.com/300/300" class="thumb" horizontalAlignment="right"></Image>
+                        <StackLayout height="2" backgroundColor="Gray" verticalAlignment="bottom" opacity=".5"></StackLayout>
+                    </GridLayout>
+                </ng-template>
 
-            <ListViewGridLayout tkListViewLayout scrollDirection="Vertical" itemHeight="200" spanCount="1"></ListViewGridLayout>
-        </RadListView>
-    </GridLayout>
+                <ListViewGridLayout tkListViewLayout scrollDirection="Vertical" itemHeight="200" spanCount="1"></ListViewGridLayout>
+            </RadListView>
+        </GridLayout>
 
-    <!--Future Nav Drawer in the making-->
-    <RadSideDrawer tkExampleTitle tkToggleNavButton>
-        <StackLayout tkDrawerContent class="sideStackLayout">
-            <StackLayout class="sideTitleStackLayout">
-                <Label text="Navigation Menu"></Label>
+        <!--Future Nav Drawer in the making-->
+        <RadSideDrawer tkExampleTitle tkToggleNavButton>
+            <StackLayout tkDrawerContent class="sideStackLayout">
+                <StackLayout class="sideTitleStackLayout">
+                    <Label text="Navigation Menu"></Label>
+                </StackLayout>
+                <StackLayout class="sideStackLayout">
+                    <Label text="Primary" class="sideLabel sideLightGrayLabel"></Label>
+                    <Label text="Social" class="sideLabel"></Label>
+                    <Label text="Promotions" class="sideLabel"></Label>
+                    <Label text="Labels" class="sideLabel sideLightGrayLabel"></Label>
+                    <Label text="Important" class="sideLabel"></Label>
+                    <Label text="Starred" class="sideLabel"></Label>
+                    <Label text="Sent Mail" class="sideLabel"></Label>
+                    <Label text="Drafts" class="sideLabel"></Label>
+                </StackLayout>
+                <Button text="Close Drawer" (tap)="onCloseDrawerTap()"></Button>
             </StackLayout>
-            <StackLayout class="sideStackLayout">
-                <Label text="Primary" class="sideLabel sideLightGrayLabel"></Label>
-                <Label text="Social" class="sideLabel"></Label>
-                <Label text="Promotions" class="sideLabel"></Label>
-                <Label text="Labels" class="sideLabel sideLightGrayLabel"></Label>
-                <Label text="Important" class="sideLabel"></Label>
-                <Label text="Starred" class="sideLabel"></Label>
-                <Label text="Sent Mail" class="sideLabel"></Label>
-                <Label text="Drafts" class="sideLabel"></Label>
+            <StackLayout tkMainContent>
+                <Label [text]="mainContentText" textWrap="true" class="drawerContentText"></Label>
+                <Button text="OPEN DRAWER" (tap)="openDrawer()" class="drawerContentButton"></Button>
             </StackLayout>
-            <Button text="Close Drawer" (tap)="onCloseDrawerTap()"></Button>
-        </StackLayout>
-        <StackLayout tkMainContent>
-            <Label [text]="mainContentText" textWrap="true" class="drawerContentText"></Label>
-            <Button text="OPEN DRAWER" (tap)="openDrawer()" class="drawerContentButton"></Button>
-        </StackLayout>
-    </RadSideDrawer>
-</StackLayout>
+        </RadSideDrawer>
+    </StackLayout>

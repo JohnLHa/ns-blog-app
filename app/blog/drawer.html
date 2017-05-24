@@ -1,8 +1,3 @@
-<ActionBar title="Feed" class="action-bar">
-    <NavigationButton text="Navigation Drawer" (tap)="openDrawer()" class="drawerContentButton" android.systemIcon="ic_menu_moreoverflow"></NavigationButton>
-    <ActionItem text="Search" class="search-icon" (tap)="search()" android.systemIcon="ic_menu_search" ios.systemIcon="12" ios.position="right"></ActionItem>
-</ActionBar>
-
 <RadSideDrawer tkExampleTitle tkToggleNavButton>
     <StackLayout tkDrawerContent class="sideStackLayout">
         <StackLayout class="sideTitleStackLayout">
@@ -12,20 +7,25 @@
         <!--Menu options-->
         <StackLayout class="sideStackLayout">
             <StackLayout orientation="horizontal">
-                <Label text="Home" class="sideLabel"></Label>
+                <Label text="Home" class="sideLabel" [nsRouterLink]="['/posts']"></Label>
             </StackLayout>
+            <StackLayout row="1" colSpan="3" height="2" backgroundColor="Gray" verticalAlignment="bottom" opacity=".5"></StackLayout>
             <StackLayout orientation="horizontal">
-                <Label text="Categories" class="sideLabel"></Label>
+                <Label text="Categories" class="sideLabel" [nsRouterLink]="['/fake']"></Label>
             </StackLayout>
+            <StackLayout row="1" colSpan="3" height="2" backgroundColor="Gray" verticalAlignment="bottom" opacity=".5"></StackLayout>
             <StackLayout orientation="horizontal">
-                <Label text="Bookmarks" class="sideLabel"></Label>
+                <Label text="Bookmarks" class="sideLabel" [nsRouterLink]="['/fake']"></Label>
             </StackLayout>
+            <StackLayout row="1" colSpan="3" height="2" backgroundColor="Gray" verticalAlignment="bottom" opacity=".5"></StackLayout>
             <StackLayout orientation="horizontal">
-                <Label text="Settings" class="sideLabel"></Label>
+                <Label text="Settings" class="sideLabel" [nsRouterLink]="['/fake']"></Label>
             </StackLayout>
+            <StackLayout row="1" colSpan="3" height="2" backgroundColor="Gray" verticalAlignment="bottom" opacity=".5"></StackLayout>
             <StackLayout orientation="horizontal">
-                <Label text="Log Out" class="sideLabel"></Label>
+                <Label text="Log Out" class="sideLabel" [nsRouterLink]="['/fake']"></Label>
             </StackLayout>
+            <StackLayout row="1" colSpan="3" height="2" backgroundColor="Gray" verticalAlignment="bottom" opacity=".5"></StackLayout>
         </StackLayout>
     </StackLayout>
 </RadSideDrawer>

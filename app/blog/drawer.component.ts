@@ -29,12 +29,6 @@ export class SideDrawerGettingStartedComponent implements AfterViewInit, OnInit 
        
     }
 
-    //Allows the user to search for a certain blog post.
-    //Needs to be finished.
-    public search(){
-        alert("You have clicked the search button.");
-    }
-
     public openDrawer() {
 
         if(this.isDrawerOpen){

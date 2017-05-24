@@ -1,0 +1,7 @@
+<ActionBar title="Fake Page" class="action-bar">
+    <NavigationButton text="Go Back" (tap)="goBack()" android.systemIcon="ic_menu_back"></NavigationButton>
+    <ActionItem text="Bookmark" (tap)="bookmark()" android.systemIcon="ic_menu_set_as" ios.systemIcon="11" ios.position="right" float="right"></ActionItem>
+    <ActionItem text="Share" (tap)="share()" android.systemIcon="ic_menu_share_holo_dark" ios.systemIcon="9" ios.position="right" float="right"></ActionItem>
+</ActionBar>
+
+<Button text="This page has not been created yet. Press button to return home." [nsRouterLink]="['/posts']"></Button>

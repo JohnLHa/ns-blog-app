@@ -19,14 +19,28 @@ import { SideDrawerGettingStartedComponent } from "./drawer.component";
 export class PostsComponent implements OnInit {
     posts: Array<Post> = [];
     public searchPhrase: string;
+    isSearching = false;
 
-    constructor(private data: BlogService) { }
+    constructor(
+        private data: BlogService,
+        private page: Page) 
+            {
+                page.actionBarHidden = true; 
+            }
 
     //On Init pulls and saves Posts into a post array<Post>
     ngOnInit(): void {
         this.data.posts().subscribe(posts=>{
             posts.forEach(post=>this.posts.push(post))
         });
+    }
+
+    //Allows the user to search for a certain blog post.
+    //Needs to be finished.
+    public search(){
+        if(!this.isSearching){
+            this.isSearching=true;
+        }
     }
 }
 
